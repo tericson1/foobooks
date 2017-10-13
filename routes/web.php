@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'WelcomeController@index');
+
+Route::get('/book/', 'BookController@index');
+
+
+Route::get('/book/{title?}', function($title = '') {
+
+    if($title == '') {
+        return 'Your request did not include a title.';
+    }
+    else {
+	    return 'Results for the book: '.$title;
+    }
+
 });
+
+Route::get('/book/{title}', 'BookController@show');
